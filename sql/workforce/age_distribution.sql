@@ -14,13 +14,14 @@ FROM (
         e.emp_no,
         e.gender,
         CASE
-            WHEN TIMESTAMPDIFF(YEAR, e.birth_date, CURDATE()) < 30 THEN 'Under 30'
-            WHEN TIMESTAMPDIFF(YEAR, e.birth_date, CURDATE()) BETWEEN 30 AND 39 THEN '30-39'
-            WHEN TIMESTAMPDIFF(YEAR, e.birth_date, CURDATE()) BETWEEN 40 AND 49 THEN '40-49'
+            WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, e.birth_date)) < 30 THEN 'Under 30'
+            WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, e.birth_date)) BETWEEN 30 AND 39 THEN '30-39'
+            WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, e.birth_date)) BETWEEN 40 AND 49 THEN '40-49'
             ELSE '50+'
         END AS age_band
     FROM employees e
-    JOIN dept_emp de ON e.emp_no = de.emp_no
+    JOIN dept_emp de 
+        ON e.emp_no = de.emp_no
     WHERE de.to_date = '9999-01-01'
 ) age_data
 GROUP BY age_band, gender
