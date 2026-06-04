@@ -12,7 +12,7 @@ The analysis covers the full analytics pipeline:
 - Raw SQL queries → cleaned datasets → Power BI dashboards → business recommendations
 
 **Database:** MySQL Employees Sample Database  
-**Tools:** MySQL · Power BI · Excel · Git  
+**Tools:** PostgreSQL · Power BI · Excel · Git  
 **SQL Level:** Advanced (CTEs, Window Functions, CASE logic, Subqueries)
 
 ---
